@@ -1,0 +1,40 @@
+name: build
+env:
+  RABBITMQ_VERSION: v4.1.1
+on:
+  workflow_call: {}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout this repository (plugin)
+      uses: actions/checkout@v4
+      with:
+        path: rabbitmq_mqtt_retained_msg_khepri
+
+    - name: Set up Erlang 27.0
+      uses: erlef/setup-beam@v1
+      with:
+        otp-version: '27.0'
+        rebar3-version: '3' 
+        elixir-version: '1.16'
+
+    - name: Clone rabbitmq/rabbitmq-server at specified tag
+      run: |
+        git clone --branch $RABBITMQ_VERSION --depth 1 https://github.com/rabbitmq/rabbitmq-server.git
+
+    - name: Move plugin into deps folder
+      run: |
+        mv rabbitmq_mqtt_retained_msg_khepri rabbitmq-server/deps/
+
+    - name: Build & Package
+      run: |
+        cd rabbitmq-server
+        make -C deps/rabbitmq_mqtt_retained_msg_khepri DIST_AS_EZS=yes dist
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build_dir
+        path: rabbitmq-server/deps/rabbitmq_mqtt_retained_msg_khepri/plugins/rabbitmq_mqtt_retained_msg_khepri*.ez

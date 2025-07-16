@@ -1,0 +1,9 @@
+name: pull request
+on:
+  pull_request:
+    branches:
+    - main
+    - develop
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
