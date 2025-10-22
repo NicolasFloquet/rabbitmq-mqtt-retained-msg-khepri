@@ -1,6 +1,6 @@
 name: build
 env:
-  RABBITMQ_VERSION: v4.1.2
+  RABBITMQ_VERSION: v4.1.4
 on:
   workflow_call: {}
 jobs:
