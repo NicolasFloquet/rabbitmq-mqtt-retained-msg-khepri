@@ -31,7 +31,7 @@ This plugin only relies on RabbitMQ. All [RabbitMQ required libraries and tools]
 ```bash
 
 # Clone RabbitMQ server repository
-git clone --depth 1 --branch  v4.1.4 https://github.com/rabbitmq/rabbitmq-server.git
+git clone --depth 1 --branch  v4.2.2 https://github.com/rabbitmq/rabbitmq-server.git
 
 # Clone plugin into deps directory
 git clone git@github.com:NicolasFloquet/rabbitmq-mqtt-retained-msg-khepri.git rabbitmq-server/deps/rabbitmq_mqtt_retained_msg_khepri
