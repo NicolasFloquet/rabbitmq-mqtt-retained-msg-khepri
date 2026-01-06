@@ -1,7 +1,7 @@
 PROJECT = rabbitmq_mqtt_retained_msg_khepri
 PROJECT_DESCRIPTION = RabbitMQ MQTT Retained message store based on khepri
 PROJECT_MOD = rabbitmq_mqtt_retained_msg_khepri
-PROJECT_VERSION = v4.1.1
+PROJECT_VERSION = v4.2.2
 
 # We do not need QUIC as dependency of emqtt.
 BUILD_WITHOUT_QUIC=1
